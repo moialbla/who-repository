@@ -3,7 +3,7 @@
 
 # define the VM image I want to use for my build
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: 'ubuntu-18.04'
 
 # define variables to use during the build
 variables:
