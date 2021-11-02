@@ -8,7 +8,7 @@ jobs:
 - job: CI
   displayName: 'CI'
   pool:
-    vmImage: '${{ parameters.vmImage }}' $(vmImage)
+    vmImage: '${{ parameters.vmImage }}' 
   # define the steps of the build
   steps:
   ## Run the npm install/build
