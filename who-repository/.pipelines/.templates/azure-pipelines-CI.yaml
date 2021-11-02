@@ -8,17 +8,17 @@ jobs:
 - job: CI
   displayName: 'CI'
   pool:
-    vmImage: $(vmImage)
+    vmImage: '${{ parameters.vmImage }}' $(vmImage)
   # define the steps of the build
   steps:
   ## Run the npm install/build
   - script: |
-      pushd $(projectFolder) && npm install && popd
-      pushd $(projectFolder) && npm run build && popd
+      pushd '${{ parameters.projectFolder }} && npm install && popd
+      pushd '${{ parameters.projectFolder }}' && npm run build && popd
   ## Copy the client to the staging directory
   - task: CopyFiles@2
     inputs:
-      sourceFolder: '$(buildOutputFolder)' 
+      sourceFolder: '${{ parameters.buildOutputFolder }}' '$(buildOutputFolder)' 
       contents: '**/*' 
       targetFolder: '$(Build.ArtifactStagingDirectory)'
       cleanTargetFolder: true
