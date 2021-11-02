@@ -18,7 +18,7 @@ jobs:
   ## Copy the client to the staging directory
   - task: CopyFiles@2
     inputs:
-      sourceFolder: '${{ parameters.buildOutputFolder }}' '$(buildOutputFolder)' 
+      sourceFolder: '${{ parameters.buildOutputFolder }}'
       contents: '**/*' 
       targetFolder: '$(Build.ArtifactStagingDirectory)'
       cleanTargetFolder: true
