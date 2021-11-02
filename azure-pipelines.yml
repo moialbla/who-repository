@@ -1,7 +1,7 @@
 # Build ASP.NET Core project using Azure Pipelines
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=vsts
 trigger:
-  - 'master'
+  - 'main'
   
 # define the VM image I want to use for my build
 pool:
