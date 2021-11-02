@@ -1,15 +1,17 @@
-# define the VM image I want to use for my build
-pool:
-  vmImage: 'ubuntu-18.04'
-
 # define variables to use during the build
 variables:
   projectFolder: 'who-repository'
   buildOutputFolder: 'who-repository/build'
+  vmImage: 'ubuntu-18.04'
+  
+jobs:
+- job: CI
+  displayName: 'CI'
+  pool:
+    vmImage: $(vmImage)
 
 # define the steps of the build
 steps:
-
 ## Run the npm install/build
 - script: |
     pushd $(projectFolder) && npm install && popd
