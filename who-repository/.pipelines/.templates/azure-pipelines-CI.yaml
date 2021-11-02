@@ -13,8 +13,8 @@ jobs:
   steps:
   ## Run the npm install/build
   - script: |
-      pushd '${{ parameters.projectFolder }} && npm install && popd
-      pushd '${{ parameters.projectFolder }}' && npm run build && popd
+      pushd ${{ parameters.projectFolder }} && npm install && popd
+      pushd ${{ parameters.projectFolder }} && npm run build && popd
   ## Copy the client to the staging directory
   - task: CopyFiles@2
     inputs:
