@@ -52,22 +52,24 @@ jobs:
         customCommand: 'run build'
         workingDir: '${{ parameters.workingDirectory }}' 
 
+     
     - task: CopyFiles@2
       inputs:
-        sourceFolder: '$(buildOutputFolder)' 
+        sourceFolder: '${{ parameters.buildOutputFolder }}'
         contents: '**/*' 
         targetFolder: '$(Build.ArtifactStagingDirectory)'
         cleanTargetFolder: true
-      
-      ## Archive the files into a zip file for publishing
+        ## Archive the files into a zip file for publishing
+
+  ## Archive the files into a zip file for publishing
     - task: ArchiveFiles@2
       inputs:
-          rootFolderOrFile: $(Build.ArtifactStagingDirectory)
-          archiveType: 'zip'
-          archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-          includeRootFolder: false
-      
-      ## Publish the zip file
+        rootFolderOrFile: $(Build.ArtifactStagingDirectory)
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        includeRootFolder: false
+
+    ## Publish the zip file
     - task: PublishBuildArtifacts@1
       inputs:
-          pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
