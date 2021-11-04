@@ -1,7 +1,7 @@
 # define variables to use during the build
 parameters:
-  projectFolder: 'who-repository'
-  buildOutputFolder: 'who-repository/build'
+  projectFolder: 'project_2'
+  buildOutputFolder: 'project_2/build'
   vmImage: 'ubuntu-18.04'
   
 jobs:
