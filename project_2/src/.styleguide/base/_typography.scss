@@ -1,0 +1,125 @@
+//fonts
+@font-face {
+    font-family: "Proxima Nova";
+    src: local("Proxima Nova"), url("../../assets/fonts/ProximaNova/ProximaNovaBold.eot") format("embedded-opentype"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaRegular.svg") format("svg"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaRegular.woff2") format("woff2"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaRegular.woff") format("woff"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaRegular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Proxima Nova Light";
+    src: local("Proxima Nova"), url("../../assets/fonts/ProximaNova/ProximaNovaLight.eot") format("embedded-opentype"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaLight.svg") format("svg"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaLight.woff2") format("woff2"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaLight.woff") format("woff"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaLight.ttf") format("truetype");
+}
+
+@font-face{
+    font-family: "Proxima Nova Bold";
+    src: local("Proxima Nova"), url("../../assets/fonts/ProximaNova/ProximaNovaBold.eot") format("embedded-opentype"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaBold.svg") format("svg"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaBold.woff2") format("woff2"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaBold.woff") format("woff"),
+        url("../../assets/fonts/ProximaNova/ProximaNovaBold.ttf") format("truetype");
+}
+
+@font-face{
+    font-family: 'Montserrat';
+    src: local("Montserrat"), url("../../assets/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+}
+@font-face{
+    font-family: 'Montserrat Bold';
+    src: local("Montserrat"), url("../../assets/fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+}
+@font-face{
+    font-family: 'Montserrat ExtraBold';
+    src: local("Montserrat"), url("../../assets/fonts/Montserrat/Montserrat-ExtraBold.ttf") format("truetype");
+}
+
+.font__ProximaNova--regular{
+    font-family: 'Proxima Nova';
+}
+.font__ProximaNova--light{
+    font-family: 'Proxima Nova Light';
+}
+.font__ProximaNova--bold{
+    font-family: 'Proxima Nova Bold';
+}
+.font__ProximaNova--semibold{
+    font-family: 'Proxima Nova SemiBold';
+}
+
+.font__Montserrat--regular{
+    font-family: 'Montserrat';
+}
+
+.font__Montserrat--bold{
+    font-family: 'Montserrat Bold';
+}
+
+.font__Montserrat--extrabold{
+    font-family: 'Montserrat ExtraBold';
+}
+
+//text sizes
+
+.h1 {
+    font-size: 40px;
+}
+
+.h2 {
+    font-size: 35px;
+}
+
+.h3 {
+    font-size: 30px;
+}
+
+.h4 {
+    font-size: 18px;
+}
+
+.h5 {
+    font-size: 16px;
+}
+
+.h6 {
+    font-size: 14px;
+}
+
+.landing-numbers-size{
+    font-size: 60px;
+}
+
+//Text Colors
+
+.text-dark-blue{
+    color: $darkBlue;
+}
+
+.text-light-blue{
+    color: $lightBlue;
+}
+
+.text-brand-blue{
+    color: $brandBlue;
+}
+
+.text-gray{
+    color: $textGray;
+}
+
+.text-white{
+    color: $white;
+}
+
+.text-pointed {
+    cursor: pointer;
+}
+
+.text-bold {
+    font-weight: bold;
+}

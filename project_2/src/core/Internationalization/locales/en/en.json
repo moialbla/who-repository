@@ -1,0 +1,18 @@
+{
+  "total_amount":"Total Amount",
+  "favourites":"Favourites",
+  "list_title":"Product List",
+  "cart_title":"Cart",
+  "item":
+  {
+    "add":"+ Add",
+    "left":"left",
+    "currency":"$"
+  },
+  "cart" : { "checkout" : "Checkout" },
+  "languages":{
+    "title":"Languages",
+    "es":"Spanish",
+    "en":"English"
+  }
+}

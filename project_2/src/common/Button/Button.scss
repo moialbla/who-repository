@@ -1,0 +1,97 @@
+@import '../../.styleguide/base/colors';
+@import '../../.styleguide/base/animations';
+$base: #0f1923;
+$white: #eeeeee;
+$pink: #ff4655;
+$height: 20px;  
+$transition: 0.3s ease-out all;
+
+.button {
+  box-shadow: 0 0 2px 0 grey;
+    border-radius: 2px;
+    background-color: #fff;
+}
+a {
+    width: 100%;
+    max-width: 50px;
+    height: $height;
+    font-size: 0.6rem;
+    font-weight: 900;
+    color: $pink;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 0 0 1px inset rgba($color_one, 0.3);
+    position: relative;
+    margin: 10px 0;
+    &.white:hover > p {
+      color: $color_one;
+    }
+    &.white > p {
+      background: $color_one;
+      color: $base;
+      & span.base {
+        border: 1px solid transparent;
+      }
+    }
+    &.transparent:hover > p {
+      color: $color_one;
+      & span.text {
+        box-shadow: 0 0 0 1px $color_one;
+      }
+    }
+    &.transparent > p {
+      background: $base;
+      color: $color_one;
+      & span.base {
+        border: 1px solid $color_one;
+      }
+    }
+    & p {
+      margin: 0;
+      height: $height;
+      line-height: $height;
+      box-sizing: border-box;
+      z-index: 1;
+      left: 0;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      & span.base {
+        box-sizing: border-box;
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        border: 1px solid $pink;
+      }
+      & span.bg {
+        left: -5%;
+        position: absolute;
+        background: $pink;
+        width: 0;
+        height: 100%;
+        z-index: 3;
+        transition: $transition;
+        transform: skewX(-10deg);
+      }
+      & span.text {
+        z-index: 4;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+    &:hover {
+      color: $color_one;
+      & span.bg {
+        width: 110%;
+      }
+      & span.text:after {
+        background: $color_one;
+      }
+    }
+  }

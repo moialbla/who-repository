@@ -1,0 +1,157 @@
+// Variables.
+$tile-bg: #cfcfdf;
+
+body {
+    background: white;
+    animation: body-start-in 3s; /* other keywords like "infinite alternate" can be useful here */
+}
+  
+@keyframes body-start-in {
+/* You could think of as "step 1" */
+0% {
+    background: #E74C3C;
+}
+/* You could think of as "step 2" */
+100% {
+    background: white;
+}
+}
+
+.loading-in
+{
+    animation: 1s ease 
+}
+// Styles.
+.tiles {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  width: 330px;
+}
+
+.tile {
+  animation: 1s ease 0s pulse infinite;
+  background: $tile-bg;
+  border-radius: 4px;
+  float: left;
+  height: 75px;
+  margin: 5px;
+  width: 100px;
+}
+
+
+
+// Loop from 1-9.
+@for $i from 1 through 9 {
+  .tile {
+    
+    // :nth-child(1-9) 
+    &:nth-child(#{$i}) {
+      
+      // Delay the animation. Delay increases as items loop.
+      animation-delay: $i * (1s / 18);
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    background: $tile-bg;
+    transform: scale(1);
+  }
+  
+  25% {
+    background: darken($tile-bg, 10%);
+    transform: scale(1.015);
+  }
+  
+  50% {
+    background: $tile-bg;
+    transform: scale(1);
+  }
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+
+.fade-in {
+    animation: fadeIn ease 2;
+    -webkit-animation: fadeIn ease 2;
+    -moz-animation: fadeIn ease 2;
+    -o-animation: fadeIn ease 2;
+    -ms-animation: fadeIn ease 2;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+  .fade-out {
+    animation: fadeOut ease 2s;
+    -webkit-animation: fadeOut ease 2s;
+    -moz-animation: fadeOut ease 2s;
+    -o-animation: fadeOut ease 2s;
+    -ms-animation: fadeOut ease 2s;
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-moz-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity:1;
+    }
+    100% {
+      opacity:0;
+    }
+  }
+  

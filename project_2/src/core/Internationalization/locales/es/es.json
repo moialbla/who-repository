@@ -1,0 +1,17 @@
+{
+  "favourites":"Favoritos",
+  "list_title":"List de productos",
+  "cart_title":"Carrito",
+  "item":
+  {
+    "add":"+ Añadir",
+    "left":"Quedan",
+    "currency":"€"
+  },
+  "cart" : { "checkout" : "Comprar" },
+  "languages":{
+    "title":"Idioma",
+    "es":"Español",
+    "en":"Inglés"
+  }
+}

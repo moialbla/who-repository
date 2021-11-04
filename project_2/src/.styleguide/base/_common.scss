@@ -1,0 +1,15 @@
+@mixin pulse-mixin {
+    background-color: #e9e9e9;
+    background-image:			
+            linear-gradient(
+                90deg, 
+                rgba($color_one, 0), 
+                rgba($color_one, 0.5),
+                rgba($color_one, 0)
+            );
+    background-size: 40px 100%; 
+    background-repeat: no-repeat; 
+    background-position: left -40px top 0; 
+    animation: placeholder_shine 2s ease infinite; 
+    border: 1px solid #fff;
+  }

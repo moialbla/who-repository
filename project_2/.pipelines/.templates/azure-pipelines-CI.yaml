@@ -3,7 +3,11 @@ parameters:
   projectFolder: 'project_2'
   buildOutputFolder: 'project_2/build'
   vmImage: 'ubuntu-18.04'
-  
+  workingDirectory: '$(Build.SourcesDirectory)'
+  buildContext: '.'
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+  CYPRESS_CACHE_FOLDER: $(Pipeline.Workspace)/.cache/Cypress
+
 jobs:
 - job: CI
   displayName: 'CI'
@@ -35,3 +39,27 @@ jobs:
   - task: PublishBuildArtifacts@1
     inputs:
       pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+
+  - task: Npm@1
+    displayName: 'npm run test'
+    inputs:
+      command: 'custom'
+      customCommand: 'run test'
+      workingDir: '${{ parameters.workingDirectory }}'
+    env:
+      CI: true 
+
+  - task: Npm@1
+    displayName: 'npm run coverage'
+    inputs:
+      command: 'custom'
+      customCommand: 'run test:CI'
+      workingDir: '${{ parameters.workingDirectory }}' 
+
+  - task: PublishCodeCoverageResults@1
+    displayName: "Publish code coverage"
+    inputs:
+      codeCoverageTool: Cobertura
+      summaryFileLocation: "${{ parameters.workingDirectory }}/coverage/cobertura-coverage.xml"
+      reportDirectory: "${{ parameters.workingDirectory }}/coverage"
+      failIfCoverageEmpty: true

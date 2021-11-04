@@ -1,0 +1,78 @@
+$base: 1em;
+$xxs:  0.25 * $base; //4px
+$xs:   0.5 * $base; //8px
+$sm:   0.75 * $base; //12px
+$md:   1.25 * $base; //20px
+$lg:   2 * $base; //32px
+$xl:   3.25 * $base; //52px
+$xxl:  5.25 * $base; //64x
+
+$units:
+  "base" $base,
+  "xxs" $xxs,
+  "xs" $xs,
+  "sm" $sm,
+  "md" $md,
+  "lg" $lg,
+  "xl" $xl,
+  "xxl" $xxl;
+
+  @each $unit, $value in $units {
+    .margin-#{$unit} {
+      margin: #{$value};
+    }
+    .margin-top-#{$unit} {
+      margin-top: #{$value};
+    }
+    .margin-bottom-#{$unit} {
+      margin-bottom: #{$value};
+    }
+    .margin-left-#{$unit} {
+      margin-left: #{$value};
+    }
+    .margin-right-#{$unit} {
+      margin-right: #{$value};
+    }
+    .margin-h-#{$unit} {
+      margin: 0 #{$value};
+    }
+    .margin-v-#{$unit} {
+      margin: #{$value} 0;
+    }
+    .padding-#{$unit}{
+      padding: #{$value};
+    }
+    .padding-top-#{$unit}{
+      padding: #{$value};
+    }
+    .padding-bottom-#{$unit}{
+      padding: #{$value};
+    }
+    .padding-right-#{$unit}{
+      padding: #{$value};
+    }
+    .padding-left-#{$unit}{
+      padding: #{$value};
+    }
+    .padding-h-#{$unit} {
+      padding: 0 #{$value};
+    }
+    .padding-v-#{$unit} {
+      padding: v#{$value} 0;
+    }
+  }
+
+//Height Convention
+.full-height{
+    height: 100%;
+}
+
+//Width Convention
+.full-width{
+    width: 100%;
+}
+
+//Remove margins
+.not-margin{
+  margin: 0;
+}
