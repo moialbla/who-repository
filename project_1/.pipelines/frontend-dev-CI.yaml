@@ -1,35 +1,89 @@
+# Node.js with React
+# Build a Node.js project that uses React.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
 trigger:
-- 'dev'
+- 'master'
 
- 
-jobs:
-- job: CI
-  displayName: 'CI'
-  pool:
-    vmImage: '${{ parameters.vmImage }}' 
-  # define the steps of the build
-  steps:
-  ## Run the npm install/build
-  - script: |
-      pushd ${{ parameters.projectFolder }} && npm install && popd
-      pushd ${{ parameters.projectFolder }} && npm run build && popd
-  ## Copy the client to the staging directory
-  - task: CopyFiles@2
-    inputs:
-      sourceFolder: '${{ parameters.buildOutputFolder }}'
-      contents: '**/*' 
-      targetFolder: '$(Build.ArtifactStagingDirectory)'
-      cleanTargetFolder: true
 
-  ## Archive the files into a zip file for publishing
-  - task: ArchiveFiles@2
-    inputs:
-      rootFolderOrFile: $(Build.ArtifactStagingDirectory)
-      archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-      includeRootFolder: false
+variables:
+- name: workingDirectory
+  value: '$(Build.SourcesDirectory)'
+- name: vmImage
+  value: 'ubuntu-18.04'
+- name: buildContext
+  value: '.'
+- name: npm_config_cache
+  value: $(Pipeline.Workspace)/.npm
+- name: CYPRESS_CACHE_FOLDER # Overrides the default cache location
+  value: $(Pipeline.Workspace)/.cache/Cypress
+- name: buildOutputFolder # Overrides the default cache location
+  value: build
+- group: shopping-frontend-dev
 
-  ## Publish the zip file
-  - task: PublishBuildArtifacts@1
-    inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+stages:
+- stage: 'BuildDeploy'
+  displayName: 'Build & deploy'
+  jobs:     
+  - job:
+    displayName: 'Npm install & build'      
+    pool:
+      vmImage: '${{ variables.vmImage }}'              
+    steps:
+      - task: Npm@1
+        displayName: 'npm Install' 
+        inputs:
+          command: install
+          workingDir: '${{ variables.workingDirectory }}'
+
+      - task: Npm@1
+        displayName: 'npm run test'
+        inputs:
+          command: 'custom'
+          customCommand: 'run test'
+          workingDir: '${{ variables.workingDirectory }}'
+        env:
+          CI: true 
+
+      - task: Npm@1
+        displayName: 'npm run coverage'
+        inputs:
+          command: 'custom'
+          customCommand: 'run test:CI'
+          workingDir: '${{ variables.workingDirectory }}' 
+
+      - task: PublishCodeCoverageResults@1
+        displayName: "Publish code coverage"
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: "${{ variables.workingDirectory }}/coverage/cobertura-coverage.xml"
+          reportDirectory: "${{ variables.workingDirectory }}/coverage"
+          failIfCoverageEmpty: true
+          
+      - task: Npm@1
+        displayName: 'npm build' 
+        inputs:
+          command: 'custom'
+          customCommand: 'run build'
+          workingDir: '${{ variables.workingDirectory }}' 
+
+      - task: CopyFiles@2
+        inputs:
+          sourceFolder: '$(buildOutputFolder)' 
+          contents: '**/*' 
+          targetFolder: '$(Build.ArtifactStagingDirectory)'
+          cleanTargetFolder: true
+        
+        ## Archive the files into a zip file for publishing
+      - task: ArchiveFiles@2
+        inputs:
+            rootFolderOrFile: $(Build.ArtifactStagingDirectory)
+            archiveType: 'zip'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+            includeRootFolder: false
+        
+        ## Publish the zip file
+      - task: PublishBuildArtifacts@1
+        inputs:
+            pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
