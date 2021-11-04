@@ -10,7 +10,7 @@ trigger:
       
   
 stages:
-- stage: 'Main_CI project_3'
+- stage: 'Main_CI_project_3'
   displayName: 'FrontEnd Main CI'
   jobs:
     - template: '.templates/azure-pipelines-CI.yaml'

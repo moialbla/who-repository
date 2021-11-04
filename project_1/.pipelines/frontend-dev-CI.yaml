@@ -9,7 +9,7 @@ trigger:
       - /project_1/*
 
 stages:
-- stage: 'Dev_CI project_1'
+- stage: 'Dev_CI_project_1'
   displayName: 'FrontEnd Dev CI'
   jobs:
     - template: '.templates/azure-pipelines-CI.yaml'
