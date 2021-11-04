@@ -1,4 +1,4 @@
-# define variables to use during the build
+# define parameters to use during the build
 parameters:
   projectFolder: 'project_2'
   buildOutputFolder: 'project_2/build'
@@ -19,14 +19,14 @@ jobs:
       displayName: 'npm Install' 
       inputs:
         command: install
-        workingDir: '${{ variables.workingDirectory }}'
+        workingDir: '${{ parameters.workingDirectory }}'
 
     - task: Npm@1
       displayName: 'npm run test'
       inputs:
         command: 'custom'
         customCommand: 'run test'
-        workingDir: '${{ variables.workingDirectory }}'
+        workingDir: '${{ parameters.workingDirectory }}'
       env:
         CI: true 
 
@@ -35,14 +35,14 @@ jobs:
       inputs:
         command: 'custom'
         customCommand: 'run test:CI'
-        workingDir: '${{ variables.workingDirectory }}' 
+        workingDir: '${{ parameters.workingDirectory }}' 
 
     - task: PublishCodeCoverageResults@1
       displayName: "Publish code coverage"
       inputs:
         codeCoverageTool: Cobertura
-        summaryFileLocation: "${{ variables.workingDirectory }}/coverage/cobertura-coverage.xml"
-        reportDirectory: "${{ variables.workingDirectory }}/coverage"
+        summaryFileLocation: "${{ parameters.workingDirectory }}/coverage/cobertura-coverage.xml"
+        reportDirectory: "${{ parameters.workingDirectory }}/coverage"
         failIfCoverageEmpty: true
         
     - task: Npm@1
@@ -50,7 +50,7 @@ jobs:
       inputs:
         command: 'custom'
         customCommand: 'run build'
-        workingDir: '${{ variables.workingDirectory }}' 
+        workingDir: '${{ parameters.workingDirectory }}' 
 
     - task: CopyFiles@2
       inputs:
