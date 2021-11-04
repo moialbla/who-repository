@@ -1,7 +1,5 @@
 trigger:
-  branches:
-    include:
-    - 'dev'
+- 'dev'
 
 
 stages:
