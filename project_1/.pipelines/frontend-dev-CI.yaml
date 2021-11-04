@@ -1,9 +1,39 @@
 trigger:
 - 'dev'
 
+parameters:
+  projectFolder: 'project_1'
+  buildOutputFolder: 'project_1/build'
+  vmImage: 'ubuntu-18.04'
+  
+jobs:
+- job: CI
+  displayName: 'CI'
+  pool:
+    vmImage: '${{ parameters.vmImage }}' 
+  # define the steps of the build
+  steps:
+  ## Run the npm install/build
+  - script: |
+      pushd ${{ parameters.projectFolder }} && npm install && popd
+      pushd ${{ parameters.projectFolder }} && npm run build && popd
+  ## Copy the client to the staging directory
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '${{ parameters.buildOutputFolder }}'
+      contents: '**/*' 
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+      cleanTargetFolder: true
 
-stages:
-- stage: 'Dev_CI project_1'
-  displayName: 'FrontEnd Dev CI'
-  jobs:
-    - template: '/project_1/.pipelines/.templates/azure-pipelines-CI.yaml'
+  ## Archive the files into a zip file for publishing
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: $(Build.ArtifactStagingDirectory)
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      includeRootFolder: false
+
+  ## Publish the zip file
+  - task: PublishBuildArtifacts@1
+    inputs:
+      pathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
