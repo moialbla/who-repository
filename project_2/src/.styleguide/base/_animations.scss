@@ -1,0 +1,43 @@
+$ease-out-transition: 0.3s ease-out all;
+
+@keyframes pulse_opacity_animation {
+  0% {
+    opacity: 1;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animation__pulse {
+  animation-name: pulse_opacity_animation;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+
+@keyframes width_none {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0px;
+  } 
+}
+
+@keyframes placeholder_shine {
+	to {
+		// Move shine from left to right, with offset on the right based on the width of the shine - see background-size
+		background-position: right -40px top 0;
+	}
+}

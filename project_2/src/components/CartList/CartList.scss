@@ -1,0 +1,12 @@
+.cartList{
+    height: 89%;
+    width: 95%;
+    &__items{
+        overflow: auto; 
+        height: 100%;
+    }
+    &__checkout{
+        height: 5%;
+        width: 95%;
+    }
+}

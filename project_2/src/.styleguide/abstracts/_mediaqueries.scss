@@ -1,0 +1,48 @@
+// 320px — 480px: Mobile devices.
+// 481px — 768px: iPads, Tablets.
+// 769px — 1024px: Small screens, laptops.
+// 1025px — 1200px: Desktops, large screens.
+// 1201px and more — Extra large screens, TV.
+
+@media only screen and (max-width: 769px) {
+    .list {
+      visibility: visible;
+      display: block;
+      width: 100%!important;
+      height: 100%;
+    }
+
+    .cartBlock {
+      display: none;
+      visibility: hidden !important;
+      width: 100%!important;
+      height: 100%;
+    }
+
+    .arrow-left, .arrow-right{
+      visibility: visible;
+    }
+
+    .hidden{
+      visibility: hidden !important;
+      display: none;
+    }
+    
+    .show{
+      visibility: visible !important;
+      display: block !important;
+    }
+    .icon {
+      visibility: visible !important;
+      display: block !important;
+    }
+  }
+
+  @media only screen and (min-width : 769px) {
+    .icon {
+      display: none;
+      visibility: hidden !important;
+    }
+}
+
+  
