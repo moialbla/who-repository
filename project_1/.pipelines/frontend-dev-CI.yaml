@@ -1,11 +1,7 @@
 trigger:
 - 'dev'
 
-parameters:
-  projectFolder: 'project_1'
-  buildOutputFolder: 'project_1/build'
-  vmImage: 'ubuntu-18.04'
-  
+ 
 jobs:
 - job: CI
   displayName: 'CI'
