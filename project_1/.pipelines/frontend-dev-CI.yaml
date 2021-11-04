@@ -7,21 +7,6 @@ trigger:
 - 'master'
 
 
-variables:
-- name: workingDirectory
-  value: '$(Build.SourcesDirectory)'
-- name: vmImage
-  value: 'ubuntu-18.04'
-- name: buildContext
-  value: '.'
-- name: npm_config_cache
-  value: $(Pipeline.Workspace)/.npm
-- name: CYPRESS_CACHE_FOLDER # Overrides the default cache location
-  value: $(Pipeline.Workspace)/.cache/Cypress
-- name: buildOutputFolder # Overrides the default cache location
-  value: build
-- group: shopping-frontend-dev
-
 stages:
 - stage: 'BuildDeploy'
   displayName: 'Build & deploy'
@@ -29,10 +14,14 @@ stages:
   - job:
     displayName: 'Npm install & build'      
     pool:
-      vmImage: '${{ variables.vmImage }}'              
+      vmImage: 'ubuntu-18.04'              
     steps:
       - task: Npm@1
         displayName: 'npm Install' 
         inputs:
           command: install
-          workingDir: '${{ variables.workingDirectory }}'
+          workingDir: '$(Build.SourcesDirectory)'
+      - task: CopyFiles@2
+        inputs:
+          Contents: '**'
+          TargetFolder: 
