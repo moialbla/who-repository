@@ -1,0 +1,10 @@
+# Build ASP.NET Core project using Azure Pipelines
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core?view=vsts
+trigger:
+  - 'master'
+  
+stages:
+- stage: 'Main_CI'
+  displayName: 'FrontEnd Main CI'
+  jobs:
+    - template: '.templates/azure-pipelines-CI.yaml'
