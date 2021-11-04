@@ -8,4 +8,4 @@ stages:
 - stage: 'Dev_CI project_1'
   displayName: 'FrontEnd Dev CI'
   jobs:
-    - template: './project_1/.pipelines/.templates/azure-pipelines-CI.yaml'
+    - template: '/project_1/.pipelines/.templates/azure-pipelines-CI.yaml'
