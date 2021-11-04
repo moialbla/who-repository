@@ -5,8 +5,8 @@ trigger:
     include:
     - 'dev'
   paths:
-      include:
-      - /project_1/*
+    include:
+    - project_1/*
 
 stages:
 - stage: 'Dev_CI project_1'
