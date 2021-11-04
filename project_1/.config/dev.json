@@ -1,3 +1,4 @@
 {
-    "enviroment": "dev"
+    "enviroment": "dev",
+    "timeformat": "utc"
 }
